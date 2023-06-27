@@ -16,7 +16,7 @@ export class Job{
     this._name = value;
   }
   /** ForeignExchangePrice */
-  private _foreignExchangePrice?: number;
+  private _foreignExchangePrice?: number = 0;
   public get foreignExchangePrice(): number | undefined {
     return this._foreignExchangePrice;
   }
@@ -24,7 +24,7 @@ export class Job{
     this._foreignExchangePrice = value;
   }
   /** BamPrice */
-  private _bamPrice?: number;
+  private _bamPrice?: number = 0;
   public get bamPrice(): number | undefined {
     return this._bamPrice;
   }
