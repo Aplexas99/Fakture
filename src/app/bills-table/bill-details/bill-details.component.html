@@ -72,10 +72,12 @@
 </div>
 
 <div>
-  <mat-form-field>
-    <mat-label>Partner ID</mat-label>
-    <input matInput type="number" id="partnerId" name="partnerId" [(ngModel)]="billHeader.partnerId" [value]="billHeader.partnerId || 0">
-  </mat-form-field>
+    <mat-form-field>
+        <mat-label>Partner ID</mat-label>
+        <mat-select [(ngModel)]="billHeader.partnerId" name="partnerId">
+          <mat-option *ngFor="let partner of partners" [value]="partner.id">{{ partner.id + ' : ' + partner.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
 </div>
 
 <div>

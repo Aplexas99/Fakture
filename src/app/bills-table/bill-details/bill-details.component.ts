@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BillsService } from '../service/bills.service';
 import { BillHeader } from 'src/app/models/billHeader.model';
 import { DatePipe } from '@angular/common';
+import { Partner } from 'src/app/models/partner.model';
+import { PartnersService } from 'src/app/partners/service/partners.service';
 
 @Component({
   selector: 'app-bill-details',
@@ -14,18 +16,20 @@ export class BillDetailsComponent implements OnInit {
   billHeader: BillHeader = new BillHeader();
   dateFormat = 'dd/MM/yyyy';
 
-  
+  partners: Partner[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     public billsService: BillsService,
-    private datePipe: DatePipe,
+    public partnersService: PartnersService,
   ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const id = +params['id']; 
       this.loadBillHeader(id);
+      this.loadPartners();
     });
   }
 
@@ -45,6 +49,11 @@ export class BillDetailsComponent implements OnInit {
     });
   }
 
+  loadPartners(): void {
+    this.partnersService.getPartners().subscribe((result) => {
+      this.partners = result.partners;
+    });
+  }
   
   goBack(): void {
     this.router.navigate(['/bills']);
