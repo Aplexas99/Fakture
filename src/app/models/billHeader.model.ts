@@ -1,4 +1,4 @@
-export class Bill {
+export class BillHeader {
 
     /** ID */
     private _id?: number;
@@ -129,7 +129,7 @@ export class Bill {
         totalAmount?: number,
         total_Amount?: number,
         status?: string
-    } | Bill) {
+    } | BillHeader) {
         if(data) {
             if(data.id) {
                 this.id = data.id;
@@ -170,7 +170,7 @@ export class Bill {
             if(data.status) {
                 this.status = data.status;
             }
-            if(!(data instanceof Bill)){
+            if(!(data instanceof BillHeader)){
                 if(data.bill_Number) {
                     this.billNumber = data.bill_Number;
                 }
@@ -202,8 +202,4 @@ export class Bill {
 
         }
     }
-
-
-
-
 }

@@ -20,7 +20,7 @@ import { MatListModule } from '@angular/material/list';
     BillsTableComponent,
     PartnersComponent,
     JobsComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,28 @@
-<p>jobs works!</p>
+<table mat-table [dataSource]=" dataSource">
+    <!-- Id -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+    <!-- Name -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <!-- Foreign Exchange Price -->
+    <ng-container matColumnDef="foreign-exchange-price">
+        <th mat-header-cell *matHeaderCellDef> Foreign Exchange Price </th>
+        <td mat-cell *matCellDef="let element"> {{element.foreignExchangePrice}} </td>
+    </ng-container>
+    <!-- BAM Price-->
+    <ng-container matColumnDef="bam-price">
+        <th mat-header-cell *matHeaderCellDef> BAM Price </th>
+        <td mat-cell *matCellDef="let element"> {{element.bamPrice}} </td>
+    </ng-container>
+
+    
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
