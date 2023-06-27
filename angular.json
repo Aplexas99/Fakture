@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -58,6 +59,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "Fakture:build",
+            "proxyConfig": "src/proxy.conf.json"
+            },
           "configurations": {
             "production": {
               "browserTarget": "Fakture:build:production"
@@ -94,5 +99,9 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "e6da393e-2104-4f34-8755-784e9a9606bc"
   }
+  
 }
