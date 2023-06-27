@@ -1,3 +1,5 @@
+
+
 export class BillHeader {
 
     /** ID */
@@ -105,6 +107,14 @@ export class BillHeader {
     public set status(value: string | undefined) {
         this._status = value;
     }
+    /** Rate */
+    private _rate?: number = 0;
+    public get rate(): number | undefined {
+        return this._rate;
+    }
+    public set rate(value: number | undefined) {
+        this._rate = value;
+    }
 
     constructor( data? : {
         id?: number,
@@ -128,7 +138,8 @@ export class BillHeader {
         partner_Id?: number,
         totalAmount?: number,
         total_Amount?: number,
-        status?: string
+        status?: string,
+        rate?: number,
     } | BillHeader) {
         if(data) {
             if(data.id) {
@@ -170,6 +181,9 @@ export class BillHeader {
             if(data.status) {
                 this.status = data.status;
             }
+            if(data.rate) {
+                this.rate = data.rate;
+            }
             if(!(data instanceof BillHeader)){
                 if(data.bill_Number) {
                     this.billNumber = data.bill_Number;
@@ -203,3 +217,5 @@ export class BillHeader {
         }
     }
 }
+
+

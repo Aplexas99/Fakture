@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BillsService } from './service/bills.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { BillHeader } from '../models/billHeader.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bills-table',
@@ -10,11 +11,12 @@ import { BillHeader } from '../models/billHeader.model';
 })
 export class BillsTableComponent {
 
-  billsDataSource!: MatTableDataSource<BillHeader>;
-  displayedColumns: string[] = ['id', 'bill-number', 'partner-id', 'status', 'total-amount'];
-
+  dataSource!: MatTableDataSource<BillHeader>;
+  displayedColumns: string[] = ['bill-number', 'document-date', 'delivery-date', 'due-date', 'description', 'place-of-issue', 'issue-date', 'fiscal-number', 'rate' ,'partner-id','actions'];
+  dateFormat = 'dd.MM.yyyy';
   constructor(
-    public billsService: BillsService
+    public billsService: BillsService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -26,8 +28,15 @@ export class BillsTableComponent {
 
   loadBills() {
     this.billsService.getBillHeaders().subscribe((result) => {
-      this.billsDataSource = new MatTableDataSource(result.billHeaders);
+      this.dataSource = new MatTableDataSource(result.billHeaders);
     });
   }
 
+  edit(billHeader: BillHeader) {
+    const id = billHeader.id;
+    this.router.navigateByUrl(`bills/${id}`);
+  }
+
+  delete(billHeader : BillHeader) {
+  }
 }

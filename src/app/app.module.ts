@@ -13,6 +13,16 @@ import { PartnersComponent } from './partners/partners.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule} from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { BillDetailsComponent } from './bills-table/bill-details/bill-details.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule, DatePipe } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -21,6 +31,7 @@ import { MatListModule } from '@angular/material/list';
     PartnersComponent,
     JobsComponent,
     NavigationBarComponent,
+    BillDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,9 +41,20 @@ import { MatListModule } from '@angular/material/list';
     MatSidenavModule,
     MatTableModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    MatMenuModule,
+    MatButtonModule,
+    FormsModule,
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
-  providers: [],
+  providers: [
+    DatePipe,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

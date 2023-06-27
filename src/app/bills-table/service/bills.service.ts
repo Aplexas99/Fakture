@@ -23,4 +23,37 @@ export class BillsService {
       })
     );
   }
+
+  getBillHeader(id: number): Observable<any> {
+    return this.http.get<any>(this.apiUrl+'BillHeader/'+id).pipe(
+      map((result: any) => {
+        let billHeader: BillHeader = new BillHeader(result);
+        return billHeader;
+      })
+    );
+  }
+
+  updateBillHeader(billHeader: BillHeader): Observable<any> {
+     let billHeaderPayload:BillHeader = {
+      id: billHeader.id,
+      billNumber: billHeader.billNumber,
+      documentDate: billHeader.documentDate,
+      issueDate: billHeader.issueDate,
+      deliveryDate: billHeader.deliveryDate,
+      dueDate: billHeader.dueDate,
+      partnerId: billHeader.partnerId,
+      description: billHeader.description,
+      note: billHeader.note,
+      totalAmount: billHeader.totalAmount,
+      placeOfIssue: billHeader.placeOfIssue,
+      fiscalNumber: billHeader.fiscalNumber,
+      status: billHeader.status,
+      rate: billHeader.rate,
+    };
+      return this.http.put<BillHeader>(this.apiUrl+'BillHeader/'+billHeader.id, billHeaderPayload).pipe(
+      map((result: any) => {
+        return result;
+      })
+    );
+  }
 }
