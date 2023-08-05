@@ -1,0 +1,38 @@
+
+.form-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.form-column {
+  flex-basis: calc(33.33% - 10px);
+  margin-right: 10px;
+}
+
+.form-actions {
+  text-align: center;
+}
+
+.form-field {
+  text-align: center;
+}
+
+.number-column{
+  text-align: right;
+}
+
+.description {
+  height: 50px;
+  max-width: fit-content;
+}
+
+th {
+  text-align: center;
+}

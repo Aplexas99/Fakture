@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { BillHeader } from 'src/app/models/billHeader.model';
+import { BillBody } from 'src/app/models/billBody.model';
 
 
 @Injectable({
@@ -56,4 +57,45 @@ export class BillsService {
       })
     );
   }
+
+  getBillBodies(id: number): Observable<any> {
+    return this.http.get<any>(this.apiUrl+'BillHeader/BodiesWithHeaderId?headerId='+ id).pipe(
+      map((result: BillBody[]) => {
+        let billBodies: BillBody[] = result.map(bill => new BillBody(bill));
+        return {
+          billBodies: billBodies,
+        };
+      })
+    );
+  }
+
+  addBillBody(billHeaderId: number): Observable<any> {
+    let billBody: BillBody = new BillBody();
+    let billBodyPayload = {
+      id: billBody.id,
+      description: billBody.description,
+      quantity: billBody.quantity,
+      foreignExchangePrice: billBody.foreignExchangePrice,
+      bamPrice: billBody.bamPrice,
+      discount: billBody.discount,
+      discountAmount: billBody.discountAmount,
+      tax: billBody.tax,
+      totalPrice: billBody.totalPrice?.toString(),
+      billHeaderId: billHeaderId,
+    };
+    return this.http.post<BillBody>(this.apiUrl+'BillBody', billBodyPayload).pipe(
+      map((result: BillBody) => {
+        return result;
+      })
+    );
+  }
+
+  deleteBillBody(id: number): Observable<any> {
+    return this.http.delete<any>(this.apiUrl+'BillBody/'+id).pipe(
+      map((result: any) => {
+        return result;
+      })
+    );
+  }
+
 }
